@@ -2,24 +2,53 @@ package br.com.nvnk.RegistroPiratas.Alcunhas;
 
 import br.com.nvnk.RegistroPiratas.Piratas.PirataModel;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "alcunhas")
 public class AlcunhaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
     @Column(name = "titulo")
     private String titulo;
 
     @ManyToMany(mappedBy = "alcunhas")
-    private PirataModel pirata;
+    private List<PirataModel> piratas = new ArrayList<>();
+
+    public AlcunhaModel() {
+    }
+
+    public AlcunhaModel(Long id, String titulo, List<PirataModel> piratas) {
+        this.id = id;
+        this.titulo = titulo;
+        this.piratas = piratas;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public List<PirataModel> getPiratas() {
+        return piratas;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setPiratas(List<PirataModel> piratas) {
+        this.piratas = piratas;
+    }
 }

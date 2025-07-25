@@ -20,9 +20,7 @@ public class AkumanomiDTO {
         this.id_usuario = id_usuario;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id;}
 
     public String getNome() {
         return nome;
@@ -66,5 +64,15 @@ public class AkumanomiDTO {
 
     public void setId_usuario(Long id_usuario) {
         this.id_usuario = id_usuario;
+    }
+    @Override
+    public String toString() {
+        return "AkumanomiDTO:"+
+                "\n Id: "+id+
+                "\n Nome: "+nome+
+                "\n Tipo: "+tipo+
+                "\n Descrição: "+descricao+
+                "\n Imagem: "+img_url+
+                "\n Id usuario: "+ id_usuario;
     }
 }

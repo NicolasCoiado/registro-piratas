@@ -1,10 +1,12 @@
 package br.com.nvnk.RegistroPiratas.Akumanomis;
 
+import br.com.nvnk.RegistroPiratas.Piratas.PirataModel;
+import br.com.nvnk.RegistroPiratas.Piratas.PirataRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -12,37 +14,70 @@ public class AkumanomiService {
     @Autowired
     private AkumanomiMapper mapper;
     @Autowired
-    private AkumanomiRepository repository;
+    private AkumanomiRepository akumanomiRepository;
+    @Autowired
+    private PirataRepository pirataRepository;
 
-    public AkumanomiDTO cadastrarAkumanomi(AkumanomiDTO akumanomiDTO){
-        AkumanomiModel akumanomi = mapper.toModel(akumanomiDTO);
-        akumanomi = repository.save(akumanomi);
-        return mapper.toDTO(akumanomi);
+
+    public AkumanomiDTO cadastrarAkumanomi(AkumanomiDTO akumanomiDTO) {
+        if (akumanomiDTO.getId_usuario() != null) {
+            PirataModel usuario = pirataRepository.findById(akumanomiDTO.getId_usuario())
+                    .orElseThrow(() -> new EntityNotFoundException("Usuário não cadastrado."));
+
+            if (usuario.getAkumanomi() != null) {
+                throw new IllegalStateException("O usuário já possui uma Akuma no Mi.");
+            }
+
+            AkumanomiModel akumanomiModel = mapper.toModel(akumanomiDTO, usuario);
+            AkumanomiModel akumanomiSalva = akumanomiRepository.save(akumanomiModel);
+
+            usuario.setAkumanomi(akumanomiSalva);
+            pirataRepository.save(usuario);
+
+            return mapper.toDTO(akumanomiSalva);
+        }
+        AkumanomiModel akumanomiModel = mapper.toModel(akumanomiDTO, null);
+        AkumanomiModel akumanomiSalva = akumanomiRepository.save(akumanomiModel);
+        return mapper.toDTO(akumanomiSalva);
     }
 
-    public List<AkumanomiDTO> listarAkumanomi(){
-        List<AkumanomiModel> akumanomis = repository.findAll();
-        return akumanomis.stream()
+    public List<AkumanomiDTO> listarAkumanomis (){
+        List<AkumanomiModel> akumanomisModel = akumanomiRepository.findAll();
+        return akumanomisModel.stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
     }
 
-    public AkumanomiDTO descreverAkumanomi(Long id){
-        Optional<AkumanomiModel> akumanomi = repository.findById(id);
-        return akumanomi.map(mapper::toDTO).orElse(null);
+    public AkumanomiDTO descreverAkumanomi (Long id){
+        AkumanomiModel akumanomiModel = akumanomiRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Akuma no mi não cadastrada!"));
+
+        AkumanomiDTO akumanomiDTO = mapper.toDTO(akumanomiModel);
+
+        return akumanomiDTO;
     }
 
-    public AkumanomiDTO atualizarAkumanomi(Long id, AkumanomiDTO akumanomiAtualizada){
-        Optional<AkumanomiModel> akumanomiAtual = repository.findById(id);
-        if (akumanomiAtual.isPresent()){
-            AkumanomiModel akumanomiParaSubir = mapper.toModel(akumanomiAtualizada);
-            akumanomiParaSubir.setId(id);
-            AkumanomiModel akumanomiSalva = repository.save(akumanomiParaSubir);
-            return mapper.toDTO(akumanomiSalva);
+    public AkumanomiDTO editarAkumanomi (Long id, AkumanomiDTO akumanomiEditada){
+        AkumanomiModel akumanomiModel = akumanomiRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Akuma no mi não cadastrada!"));
+
+        if(akumanomiEditada.getId_usuario() != null){
+            PirataModel usuario = pirataRepository.findById(akumanomiEditada.getId_usuario())
+                    .orElseThrow(() -> new IllegalStateException("Usuário não cadastrado!"));
+
+            if (akumanomiModel.getUsuario() == usuario){
+                return
+            }else{
+
+            }
         }else{
-            return null;
+
         }
+
+        AkumanomiDTO akumanomiEditadaDTO = akumanomiEditada;
+        akumanomiEditadaDTO.setId(akumanomiModel.getId());
+
+        return akumanomiEditadaDTO;
     }
 
-    public void deletarAkumanomi(Long id){repository.deleteById(id);}
 }

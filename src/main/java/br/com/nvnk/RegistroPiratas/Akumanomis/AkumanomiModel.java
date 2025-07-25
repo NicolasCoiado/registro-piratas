@@ -87,4 +87,15 @@ public class AkumanomiModel {
     public void setUsuario(PirataModel usuario) {
         this.usuario = usuario;
     }
+
+    @Override
+    public String toString() {
+        return "AkumanomiDTO:"+
+                "\n Id: "+id+
+                "\n Nome: "+nome+
+                "\n Tipo: "+tipo+
+                "\n Descrição: "+descricao+
+                "\n Imagem: "+img_url+
+                "\n Usuario: "+ usuario;
+    }
 }

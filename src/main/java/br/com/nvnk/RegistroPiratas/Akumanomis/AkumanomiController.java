@@ -44,22 +44,46 @@ public class AkumanomiController {
             return ResponseEntity.ok(service.descreverAkumanomi(id));
         } catch (EntityNotFoundException erro) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro.getMessage());
-        } catch (Exception e) {
+        } catch (Exception erro) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro inesperado.");
         }
     }
 
     @PutMapping("/{id}")
-    public AkumanomiDTO editarAkumanomi(@PathVariable Long id, @RequestBody AkumanomiDTO akumanomi){
-        AkumanomiDTO akumanomiEditada = service.editarAkumanomi(id, akumanomi);
-
-        return akumanomiEditada;
+    public ResponseEntity<?> atualizarAkumanomi(@PathVariable Long id, @RequestBody AkumanomiDTO akumanomi){
+        try {
+            return ResponseEntity.ok(service.atualizarAkumanomi(id, akumanomi));
+        }catch (EntityNotFoundException erro){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro.getMessage());
+        }catch (IllegalStateException erro){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro.getMessage());
+        }catch (Exception erro){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro inesperado.");
+        }
     }
 
-    //TODO: Criar o PATCH
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> editarAkumanomi(@PathVariable Long id, @RequestBody AkumanomiDTO atualizacoes){
+        try {
+            return ResponseEntity.ok(service.editarAkumanomi(id, atualizacoes));
+        } catch (EntityNotFoundException erro) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro.getMessage());
+        } catch (IllegalStateException erro) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro.getMessage());
+        } catch (Exception erro) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro inesperado.");
+        }
+    }
 
     @DeleteMapping("/{id}")
-    public String deletarAkumanomi(){
-        return "Akumanomi";
+    public ResponseEntity<String> deletarAkumanomi(@PathVariable Long id){
+        try {
+            service.deletarAkumanomi(id);
+            return ResponseEntity.ok("Akuma no mi deletada!");
+        }catch (EntityNotFoundException erro){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro.getMessage());
+        }catch (Exception erro){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro inesperado.");
+        }
     }
 }

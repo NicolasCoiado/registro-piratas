@@ -24,8 +24,12 @@ public class AkumanomiMapper {
         dto.setDescricao(model.getDescricao());
         dto.setImg_url(model.getImg_url());
 
-        PirataModel pirataModel = model.getUsuario();
-        dto.setId_usuario(pirataModel.getId());
+        if (model.getUsuario() != null){
+            PirataModel pirataModel = model.getUsuario();
+            dto.setId_usuario(pirataModel.getId());
+        }else{
+            dto.setId_usuario(null);
+        }
 
         return dto;
     }

@@ -1,31 +1,22 @@
 package br.com.nvnk.RegistroPiratas.Tripulacoes;
 
 import br.com.nvnk.RegistroPiratas.Piratas.PirataModel;
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
-@Entity
-@Table(name = "tripulacoes")
-public class TripulacaoModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TripulacaoDTO {
     private Long id;
-
-    @Column(name = "titulo")
     private String titulo;
-
-    @OneToOne
-    @JoinColumn(name = "capitao_id")
+    @JsonIgnore
     private PirataModel capitao;
-
-    @OneToMany(mappedBy = "tripulacao")
+    @JsonIgnore
     private List<PirataModel> membros;
 
-    public TripulacaoModel() {
+    public TripulacaoDTO() {
     }
 
-    public TripulacaoModel(Long id, String titulo, PirataModel capitao, List<PirataModel> membros) {
+    public TripulacaoDTO(Long id, String titulo, PirataModel capitao, List<PirataModel> membros) {
         this.id = id;
         this.titulo = titulo;
         this.capitao = capitao;

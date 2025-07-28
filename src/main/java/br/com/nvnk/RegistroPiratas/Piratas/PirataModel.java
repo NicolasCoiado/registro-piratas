@@ -1,13 +1,10 @@
 package br.com.nvnk.RegistroPiratas.Piratas;
 
 import br.com.nvnk.RegistroPiratas.Akumanomis.AkumanomiModel;
-import br.com.nvnk.RegistroPiratas.Alcunhas.AlcunhaModel;
-import br.com.nvnk.RegistroPiratas.Tripulacoes.TripulacoesModel;
+import br.com.nvnk.RegistroPiratas.Tripulacoes.TripulacaoModel;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "piratas")
@@ -23,19 +20,20 @@ public class PirataModel {
     private BigDecimal recompensa;
 
     @Column(name = "img_url")
-    private String url_img;
+    private String img_url;
+
+    @Column(name = "descricao")
+    private String descricao;
+
+    @Column(name = "alcunhas")
+    private String alcunhas;
+
+    @Column(name = "vivo_morto")
+    private Boolean vivo_morto;
 
     @ManyToOne
     @JoinColumn(name = "id_tripulacao")
-    private TripulacoesModel tripulacao;
-
-    @ManyToMany
-    @JoinTable(
-            name = "pirata_alcunha",
-            joinColumns = @JoinColumn(name = "pirata_id"),
-            inverseJoinColumns = @JoinColumn(name = "alcunha_id")
-    )
-    private List<AlcunhaModel> alcunhas = new ArrayList<>();
+    private TripulacaoModel tripulacao;
 
     @OneToOne
     @JoinColumn(name = "id_akumanomi")
@@ -44,13 +42,15 @@ public class PirataModel {
     public PirataModel() {
     }
 
-    public PirataModel(Long id, String nome, BigDecimal recompensa, String url_img, TripulacoesModel tripulacao, List<AlcunhaModel> alcunhas, AkumanomiModel akumanomi) {
+    public PirataModel(Long id, String nome, BigDecimal recompensa, String img_url, String descricao, String alcunhas, Boolean vivo_morto, TripulacaoModel tripulacao, AkumanomiModel akumanomi) {
         this.id = id;
         this.nome = nome;
         this.recompensa = recompensa;
-        this.url_img = url_img;
-        this.tripulacao = tripulacao;
+        this.img_url = img_url;
+        this.descricao = descricao;
         this.alcunhas = alcunhas;
+        this.vivo_morto = vivo_morto;
+        this.tripulacao = tripulacao;
         this.akumanomi = akumanomi;
     }
 
@@ -66,16 +66,24 @@ public class PirataModel {
         return recompensa;
     }
 
-    public String getUrl_img() {
-        return url_img;
+    public String getImg_url() {
+        return img_url;
     }
 
-    public TripulacoesModel getTripulacao() {
-        return tripulacao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public List<AlcunhaModel> getAlcunhas() {
+    public String getAlcunhas() {
         return alcunhas;
+    }
+
+    public Boolean getVivo_morto() {
+        return vivo_morto;
+    }
+
+    public TripulacaoModel getTripulacao() {
+        return tripulacao;
     }
 
     public AkumanomiModel getAkumanomi() {
@@ -94,16 +102,24 @@ public class PirataModel {
         this.recompensa = recompensa;
     }
 
-    public void setUrl_img(String url_img) {
-        this.url_img = url_img;
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 
-    public void setTripulacao(TripulacoesModel tripulacao) {
-        this.tripulacao = tripulacao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public void setAlcunhas(List<AlcunhaModel> alcunhas) {
+    public void setAlcunhas(String alcunhas) {
         this.alcunhas = alcunhas;
+    }
+
+    public void setVivo_morto(Boolean vivo_morto) {
+        this.vivo_morto = vivo_morto;
+    }
+
+    public void setTripulacao(TripulacaoModel tripulacao) {
+        this.tripulacao = tripulacao;
     }
 
     public void setAkumanomi(AkumanomiModel akumanomi) {

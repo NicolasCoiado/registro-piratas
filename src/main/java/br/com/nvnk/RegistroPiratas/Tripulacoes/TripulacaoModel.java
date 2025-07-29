@@ -16,7 +16,6 @@ public class TripulacaoModel {
     private String titulo;
 
     @OneToOne
-    @JoinColumn(name = "capitao_id")
     private PirataModel capitao;
 
     @OneToMany(mappedBy = "tripulacao")

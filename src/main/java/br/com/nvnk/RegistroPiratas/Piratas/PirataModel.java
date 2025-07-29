@@ -31,6 +31,9 @@ public class PirataModel {
     @Column(name = "vivo_morto")
     private Boolean vivo_morto;
 
+    @Column(name = "capitao")
+    private Boolean capitao;
+
     @ManyToOne
     @JoinColumn(name = "id_tripulacao")
     private TripulacaoModel tripulacao;
@@ -42,7 +45,7 @@ public class PirataModel {
     public PirataModel() {
     }
 
-    public PirataModel(Long id, String nome, BigDecimal recompensa, String img_url, String descricao, String alcunhas, Boolean vivo_morto, TripulacaoModel tripulacao, AkumanomiModel akumanomi) {
+    public PirataModel(Long id, String nome, BigDecimal recompensa, String img_url, String descricao, String alcunhas, Boolean vivo_morto, Boolean capitao, TripulacaoModel tripulacao, AkumanomiModel akumanomi) {
         this.id = id;
         this.nome = nome;
         this.recompensa = recompensa;
@@ -50,6 +53,7 @@ public class PirataModel {
         this.descricao = descricao;
         this.alcunhas = alcunhas;
         this.vivo_morto = vivo_morto;
+        this.capitao = capitao;
         this.tripulacao = tripulacao;
         this.akumanomi = akumanomi;
     }
@@ -90,6 +94,8 @@ public class PirataModel {
         return akumanomi;
     }
 
+    public Boolean getCapitao() { return capitao;}
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -125,4 +131,6 @@ public class PirataModel {
     public void setAkumanomi(AkumanomiModel akumanomi) {
         this.akumanomi = akumanomi;
     }
+
+    public void setCapitao(Boolean capitao) { this.capitao = capitao; }
 }

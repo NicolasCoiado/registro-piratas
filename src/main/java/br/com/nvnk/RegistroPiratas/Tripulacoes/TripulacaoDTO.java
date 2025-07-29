@@ -1,57 +1,61 @@
 package br.com.nvnk.RegistroPiratas.Tripulacoes;
 
-import br.com.nvnk.RegistroPiratas.Piratas.PirataModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 public class TripulacaoDTO {
     private Long id;
     private String titulo;
-    @JsonIgnore
-    private PirataModel capitao;
-    @JsonIgnore
-    private List<PirataModel> membros;
+    private Long idCapitao;
+    private List<Long> idsMembros;
 
-    public TripulacaoDTO() {
-    }
+    public TripulacaoDTO() {}
 
-    public TripulacaoDTO(Long id, String titulo, PirataModel capitao, List<PirataModel> membros) {
+    public TripulacaoDTO(Long id, String titulo, Long idCapitao, List<Long> idsMembros) {
         this.id = id;
         this.titulo = titulo;
-        this.capitao = capitao;
-        this.membros = membros;
+        this.idCapitao = idCapitao;
+        this.idsMembros = idsMembros;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public PirataModel getCapitao() {
-        return capitao;
-    }
-
-    public List<PirataModel> getMembros() {
-        return membros;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
-    public void setCapitao(PirataModel capitao) {
-        this.capitao = capitao;
+    public Long getIdCapitao() {
+        return idCapitao;
     }
 
-    public void setMembros(List<PirataModel> membros) {
-        this.membros = membros;
+    public void setIdCapitao(Long idCapitao) {
+        this.idCapitao = idCapitao;
+    }
+
+    public List<Long> getIdsMembros() {
+        return idsMembros;
+    }
+
+    public void setIdsMembros(List<Long> idsMembros) {
+        this.idsMembros = idsMembros;
+    }
+
+    @Override
+    public String toString() {
+        return "TripulacaoDTO{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", idCapitao=" + idCapitao +
+                ", idsMembros=" + idsMembros +
+                '}';
     }
 }

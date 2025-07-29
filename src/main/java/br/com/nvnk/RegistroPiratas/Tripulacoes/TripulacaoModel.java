@@ -22,8 +22,7 @@ public class TripulacaoModel {
     @OneToMany(mappedBy = "tripulacao")
     private List<PirataModel> membros;
 
-    public TripulacaoModel() {
-    }
+    public TripulacaoModel() {}
 
     public TripulacaoModel(Long id, String titulo, PirataModel capitao, List<PirataModel> membros) {
         this.id = id;
@@ -36,28 +35,28 @@ public class TripulacaoModel {
         return id;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public PirataModel getCapitao() {
-        return capitao;
-    }
-
-    public List<PirataModel> getMembros() {
-        return membros;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
+    public PirataModel getCapitao() {
+        return capitao;
+    }
+
     public void setCapitao(PirataModel capitao) {
         this.capitao = capitao;
+    }
+
+    public List<PirataModel> getMembros() {
+        return membros;
     }
 
     public void setMembros(List<PirataModel> membros) {

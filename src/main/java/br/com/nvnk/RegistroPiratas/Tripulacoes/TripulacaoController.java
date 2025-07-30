@@ -40,7 +40,16 @@ public class TripulacaoController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "400", description = "Capitão não cadastrado."),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Capitão não encontrado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Capitão não encontrado."
+                            )
+                    )
+            ),
             @ApiResponse(
                     responseCode = "400",
                     description = "Membro não cadastrado.",

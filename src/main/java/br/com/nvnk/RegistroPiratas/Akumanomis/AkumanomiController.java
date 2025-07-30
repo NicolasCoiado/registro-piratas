@@ -37,9 +37,36 @@ public class AkumanomiController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "400", description = "Usuário não cadastrado."),
-            @ApiResponse(responseCode = "404", description = "Akuma no mi não cadastrada."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Usuário não encontrado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Usuário não encontrado."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Akuma no mi não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> criarAkumanomi(
             @Parameter(description = "Dados da akuma no mi.")
@@ -74,7 +101,16 @@ public class AkumanomiController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado."),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<List<AkumanomiDTO>> listarAkumanomis(){
         return ResponseEntity.ok(service.listarAkumanomis());
@@ -96,8 +132,26 @@ public class AkumanomiController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "404", description = "Akuma no mi não cadastrada."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Akuma no mi não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> descreverAkumanomi(
             @Parameter(description = "Id da akuma no mi.")
@@ -128,9 +182,36 @@ public class AkumanomiController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "400", description = "Usuário não cadastrado."),
-            @ApiResponse(responseCode = "404", description = "Akuma no mi não cadastrada."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Usuário não cadastrado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Usuário não cadastrado."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Akuma no mi não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> atualizarAkumanomi(
             @Parameter(description = "Id da akuma no mi.")
@@ -164,9 +245,36 @@ public class AkumanomiController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "400", description = "Usuário não cadastrado."),
-            @ApiResponse(responseCode = "404", description = "Akuma no mi não cadastrada."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Usuário não cadastrado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Usuário não cadastrado."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Akuma no mi não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> editarAkumanomi(
             @Parameter(description = "Id da akuma no mi.")
@@ -186,10 +294,36 @@ public class AkumanomiController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Deletar um akuma no mi", description = "Deleta uma akuma no mi.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Akuma no mi deletada!"),
-            @ApiResponse(responseCode = "404", description = "Akuma no mi não cadastrada."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+    @ApiResponses(value = {@ApiResponse(
+                    responseCode = "200",
+                    description = "Akuma no mi deletada!",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi deletada!"
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Akuma no mi não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<String> deletarAkumanomi(
             @Parameter(description = "Id da akuma no mi.")

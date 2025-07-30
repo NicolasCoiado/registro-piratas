@@ -36,11 +36,56 @@ public class PirataController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "400", description = "Akuma no mi não cadastrada."),
-            @ApiResponse(responseCode = "400", description = "Akuma no mi já possui um usuário."),
-            @ApiResponse(responseCode = "400", description = "Tripulação não cadastrada."),
-            @ApiResponse(responseCode = "400", description = "Esta tripulação já possui um capitão."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Akuma no mi não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Akuma no mi já possui um usuário.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi já possui um usuário."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Tripulação não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Tripulação não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Esta tripulação já possui um capitão.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Esta tripulação já possui um capitão."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> cadastrarPirata (
             @Parameter(description = "Dados do pirata.")
@@ -72,7 +117,16 @@ public class PirataController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> listarPirata (){
         try {
@@ -98,8 +152,26 @@ public class PirataController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "404", description = "Pirata não cadastrado."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Pirata não cadastrado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Pirata não cadastrado."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> descreverPirata (
             @Parameter(description = "Id do pirata.")
@@ -120,7 +192,7 @@ public class PirataController {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Pirata atualizado.",
+                    description = "Pirata cadastrado.",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = AkumanomiDTO.class),
@@ -131,12 +203,66 @@ public class PirataController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "400", description = "Akuma no mi não cadastrada."),
-            @ApiResponse(responseCode = "400", description = "Akuma no mi já possui um usuário."),
-            @ApiResponse(responseCode = "400", description = "Tripulação não cadastrada."),
-            @ApiResponse(responseCode = "400", description = "Esta tripulação já possui um capitão."),
-            @ApiResponse(responseCode = "404", description = "Pirata não cadastrado."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Akuma no mi não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Akuma no mi já possui um usuário.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi já possui um usuário."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Tripulação não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Tripulação não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Esta tripulação já possui um capitão.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Esta tripulação já possui um capitão."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Pirata não cadastrado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Pirata não cadastrado."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> atualizarPirata(
             @Parameter(description = "Id do pirata.")
@@ -162,7 +288,7 @@ public class PirataController {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Pirata editado.",
+                    description = "Pirata cadastrado.",
                     content = @Content(
                             mediaType = "application/json",
                             schema = @Schema(implementation = AkumanomiDTO.class),
@@ -173,12 +299,66 @@ public class PirataController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "400", description = "Akuma no mi não cadastrada."),
-            @ApiResponse(responseCode = "400", description = "Akuma no mi já possui um usuário."),
-            @ApiResponse(responseCode = "400", description = "Tripulação não cadastrada."),
-            @ApiResponse(responseCode = "400", description = "Esta tripulação já possui um capitão."),
-            @ApiResponse(responseCode = "404", description = "Pirata não cadastrado."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Akuma no mi não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Akuma no mi já possui um usuário.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Akuma no mi já possui um usuário."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Tripulação não cadastrada.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Tripulação não cadastrada."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Esta tripulação já possui um capitão.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Esta tripulação já possui um capitão."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Pirata não cadastrado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Pirata não cadastrado."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> editarPirata(
             @Parameter(description = "Id do pirata.")
@@ -203,8 +383,26 @@ public class PirataController {
     @Operation(summary = "Deletar pirata", description = "Deleta um pirata.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Pirata deletado com sucesso."),
-            @ApiResponse(responseCode = "404", description = "Pirata não encontrado."),
-            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Pirata não encontrado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Pirata não encontrado."
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Erro inesperado.",
+                    content = @Content(
+                            mediaType = "text/plain",
+                            examples = @ExampleObject(
+                                    value = "Erro inesperado."
+                            )
+                    )
+            ),
     })
     public ResponseEntity<?> deletarPirata(
             @Parameter(description = "Id do pirata.")

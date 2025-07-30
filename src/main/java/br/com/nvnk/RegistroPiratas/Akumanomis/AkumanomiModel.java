@@ -1,10 +1,13 @@
 package br.com.nvnk.RegistroPiratas.Akumanomis;
 
 import br.com.nvnk.RegistroPiratas.Piratas.PirataModel;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "akumanomis")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class AkumanomiModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

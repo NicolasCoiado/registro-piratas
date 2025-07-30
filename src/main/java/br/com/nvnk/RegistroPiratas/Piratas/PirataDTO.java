@@ -1,9 +1,5 @@
 package br.com.nvnk.RegistroPiratas.Piratas;
 
-import br.com.nvnk.RegistroPiratas.Akumanomis.AkumanomiModel;
-import br.com.nvnk.RegistroPiratas.Tripulacoes.TripulacaoModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.math.BigDecimal;
 
 public class PirataDTO {
@@ -15,14 +11,14 @@ public class PirataDTO {
     private String alcunhas;
     private Boolean vivo_morto;
     private Boolean capitao;
-    private TripulacaoModel tripulacao;
-    private AkumanomiModel akumanomi;
+    private Long IdTripulacao;
+    private Long IdAkumanomi;
 
 
     public PirataDTO() {
     }
 
-    public PirataDTO(Long id, String nome, BigDecimal recompensa, String img_url, String descricao, String alcunhas, Boolean vivo_morto, Boolean capitao, TripulacaoModel tripulacao, AkumanomiModel akumanomi) {
+    public PirataDTO(Long id, String nome, BigDecimal recompensa, String img_url, String descricao, String alcunhas, Boolean vivo_morto, Boolean capitao, Long idTripulacao, Long idAkumanomi) {
         this.id = id;
         this.nome = nome;
         this.recompensa = recompensa;
@@ -31,8 +27,8 @@ public class PirataDTO {
         this.alcunhas = alcunhas;
         this.vivo_morto = vivo_morto;
         this.capitao = capitao;
-        this.tripulacao = tripulacao;
-        this.akumanomi = akumanomi;
+        IdTripulacao = idTripulacao;
+        IdAkumanomi = idAkumanomi;
     }
 
     public Long getId() {
@@ -67,12 +63,12 @@ public class PirataDTO {
         return capitao;
     }
 
-    public TripulacaoModel getTripulacao() {
-        return tripulacao;
+    public Long getIdTripulacao() {
+        return IdTripulacao;
     }
 
-    public AkumanomiModel getAkumanomi() {
-        return akumanomi;
+    public Long getIdAkumanomi() {
+        return IdAkumanomi;
     }
 
     public void setId(Long id) {
@@ -107,11 +103,11 @@ public class PirataDTO {
         this.capitao = capitao;
     }
 
-    public void setTripulacao(TripulacaoModel tripulacao) {
-        this.tripulacao = tripulacao;
+    public void setIdTripulacao(Long idTripulacao) {
+        IdTripulacao = idTripulacao;
     }
 
-    public void setAkumanomi(AkumanomiModel akumanomi) {
-        this.akumanomi = akumanomi;
+    public void setIdAkumanomi(Long idAkumanomi) {
+        IdAkumanomi = idAkumanomi;
     }
 }

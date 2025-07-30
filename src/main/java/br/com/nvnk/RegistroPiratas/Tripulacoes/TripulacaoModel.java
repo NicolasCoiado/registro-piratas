@@ -1,12 +1,15 @@
 package br.com.nvnk.RegistroPiratas.Tripulacoes;
 
 import br.com.nvnk.RegistroPiratas.Piratas.PirataModel;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tripulacoes")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class TripulacaoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,12 +2,15 @@ package br.com.nvnk.RegistroPiratas.Piratas;
 
 import br.com.nvnk.RegistroPiratas.Akumanomis.AkumanomiModel;
 import br.com.nvnk.RegistroPiratas.Tripulacoes.TripulacaoModel;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "piratas")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class PirataModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -29,15 +29,15 @@ public class PirataService {
         PirataModel pirataModel = mapper.toModel(pirata);
         PirataModel pirataSalvo = pirataRepository.save(pirataModel);
 
-        if (pirata.getAkumanomi() != null) {
-            AkumanomiModel akumanomiSistema = akumanomiRepository.findById(pirata.getAkumanomi().getId())
+        if (pirata.getIdAkumanomi() != null) {
+            AkumanomiModel akumanomiSistema = akumanomiRepository.findById(pirata.getIdAkumanomi())
                     .orElseThrow(() -> new IllegalStateException("Akuma no mi não cadastrada"));
             akumanomiSistema.setUsuario(pirataSalvo);
             akumanomiRepository.save(akumanomiSistema);
         }
 
-        if (pirata.getTripulacao() != null) {
-            TripulacaoModel tripulacaoSistema = tripulacaoRepository.findById(pirata.getTripulacao().getId())
+        if (pirata.getIdTripulacao() != null) {
+            TripulacaoModel tripulacaoSistema = tripulacaoRepository.findById(pirata.getIdTripulacao())
                     .orElseThrow(() -> new IllegalStateException("Tripulação não cadastrada."));
 
             if (pirata.getCapitao() != null && pirata.getCapitao()) {
@@ -86,8 +86,8 @@ public class PirataService {
         if (pirataComAtt.getVivo_morto() != null) pirataExistente.setVivo_morto(pirataComAtt.getVivo_morto());
         if (pirataComAtt.getCapitao() != null) pirataExistente.setCapitao(pirataComAtt.getCapitao());
 
-        if (pirataComAtt.getAkumanomi() != null) {
-            AkumanomiModel akumanomiAtt = akumanomiRepository.findById(pirataComAtt.getAkumanomi().getId())
+        if (pirataComAtt.getIdAkumanomi() != null) {
+            AkumanomiModel akumanomiAtt = akumanomiRepository.findById(pirataComAtt.getIdAkumanomi())
                     .orElseThrow(() -> new IllegalStateException("Akuma no mi não cadastrada"));
 
             if (akumanomiAtt.getUsuario() != null) {
@@ -99,8 +99,8 @@ public class PirataService {
             pirataExistente.setAkumanomi(akumanomiAtt);
         }
 
-        if (pirataComAtt.getTripulacao() != null) {
-            TripulacaoModel tripulacaoSistema = tripulacaoRepository.findById(pirataComAtt.getTripulacao().getId())
+        if (pirataComAtt.getIdTripulacao() != null) {
+            TripulacaoModel tripulacaoSistema = tripulacaoRepository.findById(pirataComAtt.getIdTripulacao())
                     .orElseThrow(() -> new IllegalStateException("Tripulação não cadastrada."));
 
             if (pirataComAtt.getCapitao() != null && pirataComAtt.getCapitao()) {
@@ -137,8 +137,8 @@ public class PirataService {
         if (edicoes.getAlcunhas() != null) pirataExistente.setAlcunhas(edicoes.getAlcunhas());
         if (edicoes.getVivo_morto() != null) pirataExistente.setVivo_morto(edicoes.getVivo_morto());
 
-        if (edicoes.getAkumanomi() != null) {
-            AkumanomiModel akumanomi = akumanomiRepository.findById(edicoes.getAkumanomi().getId())
+        if (edicoes.getIdAkumanomi() != null) {
+            AkumanomiModel akumanomi = akumanomiRepository.findById(edicoes.getIdAkumanomi())
                     .orElseThrow(() -> new IllegalStateException("Akuma no Mi não cadastrada."));
             if (akumanomi.getUsuario() != null && !akumanomi.getUsuario().getId().equals(pirataExistente.getId())) {
                 throw new IllegalStateException("Essa Akuma no Mi já possui um usuário.");
@@ -148,8 +148,8 @@ public class PirataService {
             pirataExistente.setAkumanomi(akumanomi);
         }
 
-        if (edicoes.getTripulacao() != null) {
-            TripulacaoModel tripulacao = tripulacaoRepository.findById(edicoes.getTripulacao().getId())
+        if (edicoes.getIdTripulacao() != null) {
+            TripulacaoModel tripulacao = tripulacaoRepository.findById(edicoes.getIdTripulacao())
                     .orElseThrow(() -> new IllegalStateException("Tripulação não cadastrada."));
 
             if (edicoes.getCapitao() != null && edicoes.getCapitao()) {

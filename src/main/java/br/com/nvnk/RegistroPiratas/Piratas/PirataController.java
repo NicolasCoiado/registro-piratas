@@ -1,5 +1,13 @@
 package br.com.nvnk.RegistroPiratas.Piratas;
 
+import br.com.nvnk.RegistroPiratas.Akumanomis.AkumanomiDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +21,30 @@ public class PirataController {
     PirataService pirataService;
 
     @PostMapping
-    public ResponseEntity<?> cadastrarPirata (@RequestBody PirataDTO pirata){
+    @Operation(summary = "Cadastrar pirata", description = "Cadastra um novo pirata.")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Pirata cadastrado.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = AkumanomiDTO.class),
+                            examples = @ExampleObject(
+                                    name = "Exemplo dos dados retornados.",
+                                    summary = "Pirata",
+                                    externalValue = "/openapi/examples/pirata-response.json"
+                            )
+                    )
+            ),
+            @ApiResponse(responseCode = "400", description = "Akuma no mi não cadastrada."),
+            @ApiResponse(responseCode = "400", description = "Akuma no mi já possui um usuário."),
+            @ApiResponse(responseCode = "400", description = "Tripulação não cadastrada."),
+            @ApiResponse(responseCode = "400", description = "Esta tripulação já possui um capitão."),
+            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+    })
+    public ResponseEntity<?> cadastrarPirata (
+            @Parameter(description = "Dados do pirata.")
+            @RequestBody PirataDTO pirata){
         try {
             PirataDTO pirataSalvo = pirataService.cadastrarPirata(pirata);
             return ResponseEntity.status(HttpStatus.CREATED).body(pirataSalvo);
@@ -26,6 +57,23 @@ public class PirataController {
     }
 
     @GetMapping
+    @Operation(summary = "Listar piratas", description = "Lista todos os piratas.")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Piratas listados.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = AkumanomiDTO.class),
+                            examples = @ExampleObject(
+                                    name = "Exemplo dos dados retornados.",
+                                    summary = "Pirata",
+                                    externalValue = "/openapi/examples/pirata-response.json"
+                            )
+                    )
+            ),
+            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+    })
     public ResponseEntity<?> listarPirata (){
         try {
             return ResponseEntity.ok(pirataService.listarPiratas());
@@ -35,7 +83,28 @@ public class PirataController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> descreverPirata (@PathVariable Long id){
+    @Operation(summary = "Descrever pirata", description = "Descreve todas as propriedades de um pirata.")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Pirata cadastrado.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = AkumanomiDTO.class),
+                            examples = @ExampleObject(
+                                    name = "Exemplo dos dados retornados.",
+                                    summary = "Pirata",
+                                    externalValue = "/openapi/examples/pirata-response.json"
+                            )
+                    )
+            ),
+            @ApiResponse(responseCode = "404", description = "Pirata não cadastrado."),
+            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+    })
+    public ResponseEntity<?> descreverPirata (
+            @Parameter(description = "Id do pirata.")
+            @PathVariable Long id
+    ){
         try {
             return ResponseEntity.ok(pirataService.descreverPirata(id));
         }catch (EntityNotFoundException erro){
@@ -47,7 +116,34 @@ public class PirataController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> atualizarPirata(@PathVariable Long id, @RequestBody PirataDTO pirataComAtt) {
+    @Operation(summary = "Atualizar pirata", description = "Atualiza um pirata.")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Pirata atualizado.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = AkumanomiDTO.class),
+                            examples = @ExampleObject(
+                                    name = "Exemplo dos dados retornados.",
+                                    summary = "Pirata",
+                                    externalValue = "/openapi/examples/pirata-response.json"
+                            )
+                    )
+            ),
+            @ApiResponse(responseCode = "400", description = "Akuma no mi não cadastrada."),
+            @ApiResponse(responseCode = "400", description = "Akuma no mi já possui um usuário."),
+            @ApiResponse(responseCode = "400", description = "Tripulação não cadastrada."),
+            @ApiResponse(responseCode = "400", description = "Esta tripulação já possui um capitão."),
+            @ApiResponse(responseCode = "404", description = "Pirata não cadastrado."),
+            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+    })
+    public ResponseEntity<?> atualizarPirata(
+            @Parameter(description = "Id do pirata.")
+            @PathVariable Long id,
+            @Parameter(description = "Novos dados do pirata.")
+            @RequestBody PirataDTO pirataComAtt
+    ) {
         try {
             PirataDTO atualizado = pirataService.atualizarPirata(id, pirataComAtt);
             return ResponseEntity.ok(atualizado);
@@ -62,7 +158,34 @@ public class PirataController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> editarPirata(@PathVariable Long id, @RequestBody PirataDTO edicoes) {
+    @Operation(summary = "Editar pirata", description = "Edita um pirata.")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Pirata editado.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = AkumanomiDTO.class),
+                            examples = @ExampleObject(
+                                    name = "Exemplo dos dados retornados.",
+                                    summary = "Pirata",
+                                    externalValue = "/openapi/examples/pirata-response.json"
+                            )
+                    )
+            ),
+            @ApiResponse(responseCode = "400", description = "Akuma no mi não cadastrada."),
+            @ApiResponse(responseCode = "400", description = "Akuma no mi já possui um usuário."),
+            @ApiResponse(responseCode = "400", description = "Tripulação não cadastrada."),
+            @ApiResponse(responseCode = "400", description = "Esta tripulação já possui um capitão."),
+            @ApiResponse(responseCode = "404", description = "Pirata não cadastrado."),
+            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+    })
+    public ResponseEntity<?> editarPirata(
+            @Parameter(description = "Id do pirata.")
+            @PathVariable Long id,
+            @Parameter(description = "Novos dados do pirata.")
+            @RequestBody PirataDTO edicoes
+    ) {
         try {
             PirataDTO atualizado = pirataService.editarPirata(id, edicoes);
             return ResponseEntity.ok(atualizado);
@@ -77,7 +200,16 @@ public class PirataController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletarPirata(@PathVariable Long id) {
+    @Operation(summary = "Deletar pirata", description = "Deleta um pirata.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Pirata deletado com sucesso."),
+            @ApiResponse(responseCode = "404", description = "Pirata não encontrado."),
+            @ApiResponse(responseCode = "500", description = "Erro inesperado.")
+    })
+    public ResponseEntity<?> deletarPirata(
+            @Parameter(description = "Id do pirata.")
+            @PathVariable Long id
+    ) {
         try {
             pirataService.deletarPirata(id);
             return ResponseEntity.ok("Pirata deletado com sucesso.");

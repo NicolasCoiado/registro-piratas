@@ -74,7 +74,7 @@ public class AkumanomiController {
                             )
                     )
             ),
-            @ApiResponse(responseCode = "500", description = "Usuário não cadastrado."),
+            @ApiResponse(responseCode = "500", description = "Erro inesperado."),
     })
     public ResponseEntity<List<AkumanomiDTO>> listarAkumanomis(){
         return ResponseEntity.ok(service.listarAkumanomis());
